@@ -1,0 +1,17 @@
+{
+  "name": "wall-time-arithmetic-utils",
+  "version": "0.1.0",
+  "description": "Performs hour and minute arithmetic on wall-clock times, wrapping past midnight without dates or timezones.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {}
+}
