@@ -22,3 +22,10 @@ Some scheduling logic only cares about clock time — "shift starts at 22:00 and
 ## Edge cases
 
 The library wraps around the 24-hour boundary in both directions. `01:00 − 02:00` returns `23:00`, not a negative time. Deltas may be arbitrarily large — `{ hours: 48 }` is treated as two full days and wraps to the same time. Input values must be integers; passing `{ hours: 1.5 }` throws a `TypeError` rather than silently coercing to 90 minutes. Hours and minutes in the input time are not required to be in range: `{ hour: 25, minute: 70 }` is valid and will be normalized by the arithmetic, which is how `addWallTime` keeps its internal model honest.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
